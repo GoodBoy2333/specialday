@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fy.specialday.Mapper.SysRolePermissionMapper">
+  <resultMap id="BaseResultMap" type="com.fy.specialday.Entity.SysRolePermission">
+    <!--@mbg.generated-->
+    <id column="roleId" jdbcType="DECIMAL" property="roleid" />
+    <id column="permissionId" jdbcType="DECIMAL" property="permissionid" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    <!--@mbg.generated-->
+    delete from sys_role_permission
+    where roleId = #{roleid,jdbcType=DECIMAL}
+      and permissionId = #{permissionid,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.fy.specialday.Entity.SysRolePermission">
+    <!--@mbg.generated-->
+    insert into sys_role_permission (roleId, permissionId)
+    values (#{roleid,jdbcType=DECIMAL}, #{permissionid,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fy.specialday.Entity.SysRolePermission">
+    <!--@mbg.generated-->
+    insert into sys_role_permission
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleid != null">
+        roleId,
+      </if>
+      <if test="permissionid != null">
+        permissionId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleid != null">
+        #{roleid,jdbcType=DECIMAL},
+      </if>
+      <if test="permissionid != null">
+        #{permissionid,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

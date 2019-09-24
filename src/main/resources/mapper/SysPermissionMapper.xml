@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fy.specialday.Mapper.SysPermissionMapper">
+    <resultMap id="BaseResultMap" type="com.fy.specialday.Entity.SysPermission">
+        <!--@mbg.generated-->
+        <id column="id" jdbcType="DECIMAL" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+        <result column="permission" jdbcType="VARCHAR" property="permission"/>
+        <result column="method" jdbcType="VARCHAR" property="method"/>
+        <result column="sort" jdbcType="DECIMAL" property="sort"/>
+        <result column="parentId" jdbcType="DECIMAL" property="parentid"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, `name`, url, `type`, permission, `method`, sort, parentId
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from sys_permission
+        where id = #{id,jdbcType=DECIMAL}
+    </select>
+    <select id="selectByUserId" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT
+            DISTINCT p.*
+        FROM
+            sys_permission p LEFT JOIN sys_role_permission rp ON rp.permissionId=p.ID
+            LEFT JOIN sys_role r ON rp.roleId=r.ID
+            LEFT JOIN sys_user_role ur ON r.id=ur.roleId
+            LEFT JOIN sys_user u ON u.id=ur.userId
+        WHERE u.id =#{userId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+        <!--@mbg.generated-->
+        delete from sys_permission
+        where id = #{id,jdbcType=DECIMAL}
+    </delete>
+    <insert id="insert" parameterType="com.fy.specialday.Entity.SysPermission">
+        <!--@mbg.generated-->
+        insert into sys_permission (id, `name`, url,
+        `type`, permission, `method`,
+        sort, parentId)
+        values (#{id,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR},
+        #{type,jdbcType=VARCHAR}, #{permission,jdbcType=VARCHAR}, #{method,jdbcType=VARCHAR},
+        #{sort,jdbcType=DECIMAL}, #{parentid,jdbcType=DECIMAL})
+    </insert>
+    <insert id="insertSelective" parameterType="com.fy.specialday.Entity.SysPermission">
+        <!--@mbg.generated-->
+        insert into sys_permission
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null and name != ''">
+                `name`,
+            </if>
+            <if test="url != null and url != ''">
+                url,
+            </if>
+            <if test="type != null and type != ''">
+                `type`,
+            </if>
+            <if test="permission != null and permission != ''">
+                permission,
+            </if>
+            <if test="method != null and method != ''">
+                `method`,
+            </if>
+            <if test="sort != null">
+                sort,
+            </if>
+            <if test="parentid != null">
+                parentId,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=DECIMAL},
+            </if>
+            <if test="name != null and name != ''">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null and url != ''">
+                #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null and type != ''">
+                #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="permission != null and permission != ''">
+                #{permission,jdbcType=VARCHAR},
+            </if>
+            <if test="method != null and method != ''">
+                #{method,jdbcType=VARCHAR},
+            </if>
+            <if test="sort != null">
+                #{sort,jdbcType=DECIMAL},
+            </if>
+            <if test="parentid != null">
+                #{parentid,jdbcType=DECIMAL},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.fy.specialday.Entity.SysPermission">
+        <!--@mbg.generated-->
+        update sys_permission
+        <set>
+            <if test="name != null and name != ''">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null and url != ''">
+                url = #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null and type != ''">
+                `type` = #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="permission != null and permission != ''">
+                permission = #{permission,jdbcType=VARCHAR},
+            </if>
+            <if test="method != null and method != ''">
+                `method` = #{method,jdbcType=VARCHAR},
+            </if>
+            <if test="sort != null">
+                sort = #{sort,jdbcType=DECIMAL},
+            </if>
+            <if test="parentid != null">
+                parentId = #{parentid,jdbcType=DECIMAL},
+            </if>
+        </set>
+        where id = #{id,jdbcType=DECIMAL}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.fy.specialday.Entity.SysPermission">
+        <!--@mbg.generated-->
+        update sys_permission
+        set `name` = #{name,jdbcType=VARCHAR},
+        url = #{url,jdbcType=VARCHAR},
+        `type` = #{type,jdbcType=VARCHAR},
+        permission = #{permission,jdbcType=VARCHAR},
+        `method` = #{method,jdbcType=VARCHAR},
+        sort = #{sort,jdbcType=DECIMAL},
+        parentId = #{parentid,jdbcType=DECIMAL}
+        where id = #{id,jdbcType=DECIMAL}
+    </update>
+</mapper>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fy.specialday.Mapper.ResourceMapper">
+  <resultMap id="BaseResultMap" type="com.fy.specialday.Entity.Resource">
+    <!--@mbg.generated-->
+    <id column="id" jdbcType="DECIMAL" property="id" />
+    <result column="photoPath" jdbcType="VARCHAR" property="photopath" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="userId" jdbcType="DECIMAL" property="userid" />
+    <result column="sort" jdbcType="DECIMAL" property="sort" />
+    <result column="thumbnailPath" jdbcType="VARCHAR" property="thumbnailpath" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="word" jdbcType="VARCHAR" property="word" />
+    <result column="key" jdbcType="VARCHAR" property="key" />
+    <result column="size" jdbcType="DECIMAL" property="size" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, photoPath, createTime, userId, sort, thumbnailPath, `type`, word, `key`, `size`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from resource
+    where id = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    <!--@mbg.generated-->
+    delete from resource
+    where id = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.fy.specialday.Entity.Resource">
+    <!--@mbg.generated-->
+    insert into resource (id, photoPath, createTime, 
+      userId, sort, thumbnailPath, 
+      `type`, word, `key`, `size`
+      )
+    values (#{id,jdbcType=DECIMAL}, #{photopath,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{userid,jdbcType=DECIMAL}, #{sort,jdbcType=DECIMAL}, #{thumbnailpath,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{word,jdbcType=VARCHAR}, #{key,jdbcType=VARCHAR}, #{size,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fy.specialday.Entity.Resource">
+    <!--@mbg.generated-->
+    insert into resource
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="photopath != null and photopath != ''">
+        photoPath,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="thumbnailpath != null and thumbnailpath != ''">
+        thumbnailPath,
+      </if>
+      <if test="type != null and type != ''">
+        `type`,
+      </if>
+      <if test="word != null and word != ''">
+        word,
+      </if>
+      <if test="key != null and key != ''">
+        `key`,
+      </if>
+      <if test="size != null">
+        `size`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="photopath != null and photopath != ''">
+        #{photopath,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=DECIMAL},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=DECIMAL},
+      </if>
+      <if test="thumbnailpath != null and thumbnailpath != ''">
+        #{thumbnailpath,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null and type != ''">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="word != null and word != ''">
+        #{word,jdbcType=VARCHAR},
+      </if>
+      <if test="key != null and key != ''">
+        #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null">
+        #{size,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fy.specialday.Entity.Resource">
+    <!--@mbg.generated-->
+    update resource
+    <set>
+      <if test="photopath != null and photopath != ''">
+        photoPath = #{photopath,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=DECIMAL},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=DECIMAL},
+      </if>
+      <if test="thumbnailpath != null and thumbnailpath != ''">
+        thumbnailPath = #{thumbnailpath,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null and type != ''">
+        `type` = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="word != null and word != ''">
+        word = #{word,jdbcType=VARCHAR},
+      </if>
+      <if test="key != null and key != ''">
+        `key` = #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null">
+        `size` = #{size,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fy.specialday.Entity.Resource">
+    <!--@mbg.generated-->
+    update resource
+    set photoPath = #{photopath,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      userId = #{userid,jdbcType=DECIMAL},
+      sort = #{sort,jdbcType=DECIMAL},
+      thumbnailPath = #{thumbnailpath,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=VARCHAR},
+      word = #{word,jdbcType=VARCHAR},
+      `key` = #{key,jdbcType=VARCHAR},
+      `size` = #{size,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=DECIMAL}
+  </update>
+
+<!--auto generated by MybatisCodeHelper on 2019-09-22-->
+  <select id="findByAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from resource
+        where 1=1
+        <if test="id != null">
+            and id=#{id,jdbcType=DECIMAL}
+        </if>
+        <if test="photopath != null and photopath != ''">
+            and photoPath=#{photopath,jdbcType=VARCHAR}
+        </if>
+        <if test="createtime != null">
+            and createTime=#{createtime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="userid != null">
+            and userId=#{userid,jdbcType=DECIMAL}
+        </if>
+        <if test="sort != null">
+            and sort=#{sort,jdbcType=DECIMAL}
+        </if>
+        <if test="thumbnailpath != null and thumbnailpath != ''">
+            and thumbnailPath=#{thumbnailpath,jdbcType=VARCHAR}
+        </if>
+        <if test="type != null and type != ''">
+            and "type"=#{type,jdbcType=VARCHAR}
+        </if>
+        <if test="word != null and word != ''">
+            and word=#{word,jdbcType=VARCHAR}
+        </if>
+        <if test="key != null and key != ''">
+            and "key"=#{key,jdbcType=VARCHAR}
+        </if>
+    </select>
+</mapper>

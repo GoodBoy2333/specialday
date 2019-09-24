@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fy.specialday.Mapper.SysUserMapper">
+    <resultMap id="BaseResultMap" type="com.fy.specialday.Entity.SysUser">
+        <!--@mbg.generated-->
+        <id column="id" jdbcType="DECIMAL" property="id"/>
+        <result column="userName" jdbcType="VARCHAR" property="username"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="nickName" jdbcType="VARCHAR" property="nickname"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="birthday" jdbcType="TIMESTAMP" property="birthday"/>
+        <result column="sex" jdbcType="VARCHAR" property="sex"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
+        <result column="createTime" jdbcType="TIMESTAMP" property="createtime"/>
+        <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime"/>
+        <result column="lastLoginTime" jdbcType="TIMESTAMP" property="lastlogintime"/>
+        <collection property="roles" ofType="com.fy.specialday.Entity.SysRole"
+                    column="ID" select="com.fy.specialday.Mapper.SysRoleMapper.selectByUserId"></collection>
+        <collection property="permissions" ofType="com.fy.specialday.Entity.SysPermission"
+                    column="ID" select="com.fy.specialday.Mapper.SysPermissionMapper.selectByUserId"></collection>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, userName, `password`, nickName, phone, email, birthday, sex, `status`, createTime,
+        updateTime,lastLoginTime
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user
+        where id = #{id,jdbcType=DECIMAL}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+        <!--@mbg.generated-->
+        delete from sys_user
+        where id = #{id,jdbcType=DECIMAL}
+    </delete>
+    <insert id="insert" parameterType="com.fy.specialday.Entity.SysUser">
+        <!--@mbg.generated-->
+        insert into sys_user (id, userName, `password`,
+        nickName, phone, email,
+        birthday, sex, `status`,
+        createTime, updateTime, lastLoginTime)
+        values (#{id,jdbcType=DECIMAL}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+        #{nickname,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+        #{birthday,jdbcType=TIMESTAMP}, #{sex,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR},
+        #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}), #{lastlogintime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.fy.specialday.Entity.SysUser">
+        <!--@mbg.generated-->
+        insert into sys_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="username != null and username != ''">
+                userName,
+            </if>
+            <if test="password != null and password != ''">
+                `password`,
+            </if>
+            <if test="nickname != null and nickname != ''">
+                nickName,
+            </if>
+            <if test="phone != null and phone != ''">
+                phone,
+            </if>
+            <if test="email != null and email != ''">
+                email,
+            </if>
+            <if test="birthday != null">
+                birthday,
+            </if>
+            <if test="sex != null and sex != ''">
+                sex,
+            </if>
+            <if test="status != null and status != ''">
+                `status`,
+            </if>
+            <if test="createtime != null">
+                createTime,
+            </if>
+            <if test="updatetime != null">
+                updateTime,
+            </if>
+            <if test="lastlogintime != null">
+                lastLoginTime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=DECIMAL},
+            </if>
+            <if test="username != null and username != ''">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null and password != ''">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="nickname != null and nickname != ''">
+                #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null and phone != ''">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null and email != ''">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday != null">
+                #{birthday,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sex != null and sex != ''">
+                #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null and status != ''">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatetime != null">
+                #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastlogintime != null">
+                #{lastlogintime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.fy.specialday.Entity.SysUser">
+        <!--@mbg.generated-->
+        update sys_user
+        <set>
+            <if test="username != null and username != ''">
+                userName = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null and password != ''">
+                `password` = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="nickname != null and nickname != ''">
+                nickName = #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null and email != ''">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday != null">
+                birthday = #{birthday,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sex != null and sex != ''">
+                sex = #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null and status != ''">
+                `status` = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                createTime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatetime != null">
+                updateTime = #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastlogintime != null">
+                lastLoginTime = #{lastlogintime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=DECIMAL}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.fy.specialday.Entity.SysUser">
+        <!--@mbg.generated-->
+        update sys_user
+        set userName = #{username,jdbcType=VARCHAR},
+        `password` = #{password,jdbcType=VARCHAR},
+        nickName = #{nickname,jdbcType=VARCHAR},
+        phone = #{phone,jdbcType=VARCHAR},
+        email = #{email,jdbcType=VARCHAR},
+        birthday = #{birthday,jdbcType=TIMESTAMP},
+        sex = #{sex,jdbcType=VARCHAR},
+        `status` = #{status,jdbcType=VARCHAR},
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+        lastLoginTime = #{lastlogintime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=DECIMAL}
+    </update>
+
+    <!--auto generated by MybatisCodeHelper on 2019-09-22-->
+    <select id="findOneByUsernameOrEmailAndPassword" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user
+        where userName=#{username,jdbcType=VARCHAR} or email=#{email,jdbcType=VARCHAR} and
+        "password"=#{password,jdbcType=VARCHAR}
+    </select>
+
+    <!--auto generated by MybatisCodeHelper on 2019-09-22-->
+    <select id="findByUsernameOrEmail" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user
+        where userName=#{username,jdbcType=VARCHAR} or email=#{email,jdbcType=VARCHAR}
+    </select>
+</mapper>
